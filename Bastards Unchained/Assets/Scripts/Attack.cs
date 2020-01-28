@@ -16,7 +16,7 @@ public class Attack : MonoBehaviour
         if (Input.GetButtonDown("Kick") && GetComponent<BoxCollider2D>())
         {
             Debug.Log("destory");
-            Destroy(gameObject,1);
+            Destroy(gameObject,0.2f);
         }
     }
 
