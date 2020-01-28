@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -13,13 +14,14 @@ public class playerMovement : MonoBehaviour
     bool jump = false;
     bool crouch = false;
     public bool kick = false;
-    private int score = 0;
+
 
     // Update is called once per frame
     void Update()
     {
+		allEnemyDeadCheck();
 
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove) );
 
@@ -48,7 +50,7 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("IsKicking", false);
         }
 
-        score = att.score;
+      
     }
 
     public void Onlanding()
@@ -68,13 +70,18 @@ public class playerMovement : MonoBehaviour
         jump = false;
     }
 
+	void allEnemyDeadCheck()
+	{
+		GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
+		print(enemy.Length);
+		if (enemy.Length == 0)
+		{
+			SceneManager.LoadScene("EndScreen");
+		}
+	}
 
-    void Score(Attack att)
-    {
-        score = att.score;
 
-        
-    }
+   
 
 
 }

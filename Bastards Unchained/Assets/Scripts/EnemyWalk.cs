@@ -29,7 +29,7 @@ public class EnemyWalk : MonoBehaviour
                     transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
                     if (transform.position.x > pos.x+9f)
                     {
-                        Debug.Log("left");
+                        //Debug.Log("left");
                         left = true;
                        
                     }
@@ -44,7 +44,7 @@ public class EnemyWalk : MonoBehaviour
                     transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
                     if (transform.position.x < pos.x-10.0f)
                     {
-                        Debug.Log("end");
+                        //Debug.Log("end");
                         left = false;
                         speed = 2f;
                         transform.position += new Vector3(speed*Time.deltaTime, 0, 0);
