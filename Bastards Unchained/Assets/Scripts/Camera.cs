@@ -17,7 +17,7 @@ public class Camera : MonoBehaviour
     void Update()
     {
 
-        Vector3 pos = new Vector3(gameobject.transform.position.x, 4.5f, -5f);
+        Vector3 pos = new Vector3(gameobject.transform.position.x, 4.1f, -5f);
         transform.position = pos;
 
     }
