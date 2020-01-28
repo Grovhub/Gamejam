@@ -6,12 +6,14 @@ public class playerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
+    public Attack att;
     public float runSpeed = 30f;
 
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
     public bool kick = false;
+    private int score = 0;
 
     // Update is called once per frame
     void Update()
@@ -46,6 +48,7 @@ public class playerMovement : MonoBehaviour
             animator.SetBool("IsKicking", false);
         }
 
+        score = att.score;
     }
 
     public void Onlanding()
@@ -64,4 +67,14 @@ public class playerMovement : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
     }
+
+
+    void Score(Attack att)
+    {
+        score = att.score;
+
+        
+    }
+
+
 }
