@@ -4,46 +4,50 @@ using UnityEngine;
 
 public class EnemyWalk : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 2f;
     private bool m_FacingRight = true;
     int random;
     bool left = false;
+    Vector3 pos;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        pos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         int random = Random.Range(0, 9);
-        if (random > 4)
+        if (random > 1)
         {
             if (left == false)
             {
-                if (transform.position.x < 10f)
+                if (transform.position.x < pos.x+10f)
                 {
                     transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
-                    if (transform.position.x > 9f)
+                    if (transform.position.x > pos.x+9f)
                     {
+                        Debug.Log("left");
                         left = true;
-                        Debug.Log(left);
+                       
                     }
                 }
             }
         }
             if (left == true)
             {
-                if (transform.position.x < 10f)
+                if (transform.position.x < pos.x+10f)
                 {
-                    speed = -speed;
-                    Debug.Log(speed);
-                    transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
-                    if (transform.position.x > -10f)
+                    speed = -2f;
+                    transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+                    if (transform.position.x < pos.x-10.0f)
                     {
+                        Debug.Log("end");
                         left = false;
+                        speed = 2f;
+                        transform.position += new Vector3(speed*Time.deltaTime, 0, 0);
                     }
                 }
             }
@@ -56,6 +60,7 @@ public class EnemyWalk : MonoBehaviour
         // Otherwise if the input is moving the player left and the player is facing right...
         else if (speed < 0 && m_FacingRight)
         {
+            //speed = -speed;
             // ... flip the player.
             Flip();
         }
