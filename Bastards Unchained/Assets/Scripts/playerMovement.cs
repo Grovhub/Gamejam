@@ -11,6 +11,7 @@ public class playerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
+    bool kick = false;
 
     // Update is called once per frame
     void Update()
@@ -33,6 +34,16 @@ public class playerMovement : MonoBehaviour
         else if (Input.GetButtonUp("Crouch"))
         {
             crouch = false;
+        }
+        if (Input.GetButtonDown("Kick"))
+        {
+            kick = true;
+            animator.SetBool("IsKicking", true);
+        }
+        else 
+        {
+            kick = false;
+            animator.SetBool("IsKicking", false);
         }
 
     }
